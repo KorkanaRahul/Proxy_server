@@ -1,9 +1,5 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const dotenv = require('dotenv');
-
-// Load environment variables from .env file (if exists)
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,8 +16,8 @@ app.use((req, res, next) => {
 app.use(
     '/api', // Prefix for proxy routes
     createProxyMiddleware({
-        target: TARGET_SERVER, // Target server (can be set in .env)
-        changeOrigin: true, // Handle CORS
+        target: TARGET_SERVER,
+        changeOrigin: true,
         pathRewrite: {
             '^/api': '', // Remove /api prefix when forwarding
         },
