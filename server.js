@@ -2,7 +2,7 @@ const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const TARGET_SERVER = process.env.TARGET_SERVER || 'http://164.100.140.208:5001';
 
 // Middleware for logging requests
