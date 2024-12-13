@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware for logging requests
 app.use((req, res, next) => {
-    console.log([${new Date().toISOString()}] ${req.method} ${req.url});
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
     next();
 });
 
@@ -30,5 +30,5 @@ app.get('/', (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(Proxy server is running on http://localhost:${PORT});
+    console.log(`Proxy server is running on http://localhost:${PORT}`);
 });
