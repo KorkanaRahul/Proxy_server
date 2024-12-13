@@ -1,10 +1,9 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
-require('dotenv').config(); // Load environment variables from .env
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const TARGET_SERVER = process.env.TARGET_SERVER || 'http://164.100.140.208:5001/';
 
 // Middleware for logging requests
 app.use((req, res, next) => {
@@ -12,13 +11,15 @@ app.use((req, res, next) => {
     next();
 });
 
-// Proxy middleware
+// Proxy middleware to forward requests to the target server
 app.use(
-    '/api',
+    '/api', // Prefix for the proxy route
     createProxyMiddleware({
-        target: TARGET_SERVER,
-        changeOrigin: true,
-        pathRewrite: { '^/api': '' }, // Remove "/api" prefix from forwarded requests
+        target: process.env.TARGET_SERVER, // Use environment variable for the target server
+        changeOrigin: true, // Needed to handle CORS
+        pathRewrite: {
+            '^/api': '', // Remove the '/api' prefix when forwarding the request
+        },
     })
 );
 
