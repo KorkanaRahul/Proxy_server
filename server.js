@@ -4,7 +4,7 @@ require('dotenv').config(); // Load environment variables from .env
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const TARGET_SERVER = process.env.TARGET_SERVER || 'http://localhost:5001';
+const TARGET_SERVER = process.env.TARGET_SERVER || 'http://164.100.140.208:5001/';
 
 // Middleware for logging requests
 app.use((req, res, next) => {
